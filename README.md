@@ -2,9 +2,31 @@
 
 A medida de otimização local que utilizamos é a relação lucro/custo de cada prato. A cada dia, escolhemos o prato que oferece a melhor relação lucro/custo, desde que o custo do prato caiba no orçamento restante. Além disso, precisamos considerar as penalidades associadas à repetição dos pratos: o lucro é reduzido em 50% se o mesmo prato for repetido no dia seguinte e se torna zero se for repetido pela terceira vez consecutiva. Assim, após escolher um prato, ajustamos o orçamento e recalculamos a relação lucro/custo desse prato para refletir as penalidades de repetição.
 
+### Tabela de exemplo: 
+
+| Dia  | Prato | Custo (C) | Lucro (L) | Relação Lucro/Custo (L/C) | Penalidade de Repetição | Lucro Ajustado | Relação Lucro/Custo Ajustada | Escolhido |
+|------|-------|-----------|-----------|--------------------------|-------------------------|----------------|------------------------------|-----------|
+| 1    | 1     | 2         | 5         | 2.50                     | N/A                     | 5              | 2.50                         | Sim       |
+|     | 2     | 18        | 6         | 0.33                     | N/A                     | 6              | 0.33                         | Não       |
+|     | 3     | 1         | 1         | 1.00                     | N/A                     | 1              | 1.00                         | Não       |
+|     | 4     | 3         | 3         | 1.00                     | N/A                     | 3              | 1.00                         | Não       |
+|     | 5     | 2         | 3         | 1.50                     | N/A                     | 3              | 1.50                         | Não       |
+| 2    | 1     | 2         | 5         | 2.50                     | 50% (repetido)          | 2.5            | 1.25                         | Não       |
+|     | 2     | 18        | 6         | 0.33                     | N/A                     | 6              | 0.33                         | Não       |
+|     | 3     | 1         | 1         | 1.00                     | N/A                     | 1              | 1.00                         | Não       |
+|     | 4     | 3         | 3         | 1.00                     | N/A                     | 3              | 1.00                         | Não       |
+|     | 5     | 2         | 3         | 1.50                     | N/A                     | 3              | 1.50                         | Sim       |
+| 3    | 1     | 2         | 5         | 2.50                     | N/A                     | 2.5            | 1.25                         | Sim       |
+|     | 2     | 18        | 6         | 0.33                     | N/A                     | 6              | 0.33                         | Não       |
+|     | 3     | 1         | 1         | 1.00                     | N/A                     | 1              | 1.00                         | Não       |
+|     | 4     | 3         | 3         | 1.00                     | N/A                     | 3              | 1.00                         | Não       |
+|     | 5     | 2         | 3         | 1.50                     | 50% (repetido no dia 2) | 1.5            | 0.75                         | Não       |
+
+
+
 ### 2. Seu algoritmo guloso apresenta a solução ótima? Por quê?
 
-O algoritmo guloso utilizado para resolver este problema não garante uma solução ótima. O principal motivo é a natureza das penalidades de repetição e a interdependência das escolhas de pratos ao longo dos dias. As penalidades fazem com que uma decisão localmente ótima em um dia possa resultar em uma significativa redução de lucros nos dias seguintes, algo que a abordagem gulosa não consegue prever adequadamente. Além disso, o orçamento pode não ser eficientemente aproveitado devido ao limite de dias, o que pode fazer com que um prato valioso não seja escolhido nunca se houver uma relação lucro/custo mais baixa que as dos demais.
+O algoritmo guloso apresentado não garante a solução ótima global para o problema, pois sua abordagem de escolher localmente os pratos que maximizam o lucro imediato dentro do orçamento não considera todas as possíveis combinações de pratos ao longo dos dias. Embora eficiente e capaz de encontrar soluções satisfatórias, especialmente para conjuntos pequenos de dias e pratos, ele pode falhar em encontrar a solução globalmente ótima em casos complexos onde uma análise mais profunda das escolhas é necessária para maximizar o lucro total. No entanto, em níveis individuais de escolha de pratos para cada dia, o algoritmo pode alcançar uma solução ótima local, maximizando o lucro dentro das restrições locais, escolhendo pratos com base na melhor relação custo-benefício imediata, dado o contexto específico de orçamento restante e penalidades por repetição.
 
 ### 3. Como esse problema pode ser modelado para o paradigma de programação dinâmica?
 
