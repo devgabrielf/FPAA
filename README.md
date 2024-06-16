@@ -1,3 +1,5 @@
+**Integrantes do grupo**: Ana Júlia Dias Aguiar, Bianca Rangel Albino, Gabriel Ferreira Marques Mendes, Lucas Gabriell Ferreira Souza e Pedro Henrique Alves de Souza.
+
 ### 1. Como esse problema pode ser modelado para o paradigma guloso?
 
 A medida de otimização local que utilizamos é a relação lucro/custo de cada prato. A cada dia, escolhemos o prato que oferece a melhor relação lucro/custo, desde que o custo do prato caiba no orçamento restante. Além disso, precisamos considerar as penalidades associadas à repetição dos pratos: o lucro é reduzido em 50% se o mesmo prato for repetido no dia seguinte e se torna zero se for repetido pela terceira vez consecutiva. Assim, após escolher um prato, ajustamos o orçamento e recalculamos a relação lucro/custo desse prato para refletir as penalidades de repetição.
